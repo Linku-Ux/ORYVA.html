@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ORYVA — Investir avec méthode</title>
+
+<meta name="description" content="ORYVA transforme l’épargne en investissement intelligent, dès 5 $, avec des bots et des experts, gouverné par la communauté. Retraits sous 24–48 h ouvrées." />
+<meta property="og:title" content="ORYVA — Des décisions plus lucides, pas des promesses." />
+<meta property="og:description" content="Investissement structuré, accessible et transparent. Rejoignez la liste d’attente du MVP." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="theme-color" content="#0f2a36" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#0f2a36; /* Lake Blue profond */
+  --card:#103240; /* variante plus claire */
+  --accent:#7A1E1A; /* Falu Red */
+  --accent-2:#F2A36B; /* Sunset/amber doux */
+  --text:#E9F1F4; /* texte principal */
+  --muted:#AFC2C9; /* texte secondaire */
+  --pill:#143B4B; /* badges */
+  --success:#2dcf8b;
+  --radius:18px;
+  --shadow:0 10px 40px rgba(0,0,0,.28);
+  --border:1px solid rgba(255,255,255,.12);
+  --focus:#ffd166;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;color:var(--text);background:linear-gradient(180deg,#0b2230,#0f2a36 40%,#0b2230 100%);}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.visually-hidden{position:absolute !important;clip:rect(1px,1px,1px,1px);padding:0;border:0;height:1px;width:1px;overflow:hidden;white-space:nowrap}
+
+.wrap{max-width:860px;margin:0 auto;padding:20px}
+
+/* Header */
+header{position:sticky;top:0;backdrop-filter:saturate(120%) blur(8px);background:linear-gradient(180deg,rgba(11,34,48,.9),rgba(11,34,48,.6));z-index:20;border-bottom:var(--border)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.4px}
+.brand-mark{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,var(--accent-2),#ffe0b3);display:grid;place-items:center;color:#341a12;font-weight:900}
+.nav-cta{padding:10px 14px;border-radius:12px;background:var(--accent);border:1.5px solid rgba(255,255,255,.12);color:#fff;font-weight:700}
+
+/* Hero */
+.hero{position:relative;overflow:hidden}
+.hero .wrap{padding:42px 20px 26px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;background:var(--pill);padding:8px 12px;border-radius:999px;border:var(--border);color:#cfe2e9;font-weight:700}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-2)}
+h1{font-family:"Playfair Display",serif;font-weight:800;font-size:36px;line-height:1.1;margin:14px 0 10px}
+.sub{color:var(--muted);max-width:680px}
+.trustline{margin:14px 0 18px;color:#d4e6ec;opacity:.95;font-weight:700;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.trustline .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:var(--border);padding:6px 10px;border-radius:999px}
+
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:12px 16px;border-radius:14px;border:1.5px solid rgba(255,255,255,.14);background:#0000;color:var(--text);font-weight:800}
+.btn-primary{background:var(--accent);border-color:transparent}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus{outline:3px solid var(--focus);outline-offset:2px}
+
+/* Waitlist form */
+.waitlist{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.field{flex:1;min-width:200px;background:#0e3341;border:var(--border);border-radius:14px;padding:12px 14px;color:var(--text)}
+.submit{background:var(--accent);color:#fff;border:none;padding:12px 16px;border-radius:14px;font-weight:800}
+.note{color:#9fb6bd;font-size:12.5px;margin-top:6px}
+.status{margin-top:6px;font-size:13px}
+
+/* Sections */
+main{display:block}
+.section{padding:18px 20px}
+.section .wrap{padding:0}
+.kicker{font-weight:900;letter-spacing:.5px;color:#cfe2e9;margin-bottom:8px}
+.title{font-family:"Playfair Display",serif;font-size:26px;margin:8px 0 14px;display:flex;align-items:center;gap:10px}
+.lead{color:var(--muted);max-width:760px}
+
+.grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
+.card{background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:var(--border);border-radius:18px;padding:16px;box-shadow:var(--shadow)}
+.card h3{margin:4px 0 6px;font-size:18px;display:flex;align-items:center;gap:10px}
+.card p{margin:0;color:#cfe0e6}
+
+/* DAO box */
+.dao{background:#0f3443;border:var(--border);border-radius:16px;padding:14px;margin-top:12px}
+.dao h4{margin:0 0 6px 0;font-size:16px;display:flex;align-items:center;gap:8px}
+.dao p{margin:0;color:#cfe0e6}
+
+/* Engagement */
+.engagement{background:#0d2a36;border-top:var(--border);border-bottom:var(--border)}
+
+/* Risks */
+.risk{background:#0a2430;border:var(--border);border-radius:16px;padding:12px;margin-top:14px;color:#bfd2d9}
+
+/* CTA Final */
+.cta-final{background:linear-gradient(180deg,#0b2230,#0e2c3a);border-top:var(--border)}
+.center{text-align:center}
+
+footer{
+  padding:28px 20px;
+  color:#a8c0c8;
+  border-top:var(--border);
+}
+
+.footer-grid{
+  display:grid;
+  gap:6px;
+}
+
+.small{
+  font-size:13px;
+  color:#90aab3;
+}
+
+/* Decorative rings */
+.rings{
+  position:absolute;
+  right:-120px;
+  top:-120px;
+  width:360px;
+  height:360px;
+  opacity:.5;
+}
+.ring{
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.12);
+  animation:spin 28s linear infinite;
+}
+.ring:nth-child(2){
+  inset:18px;
+  animation-duration:36s;
+  border-color:rgba(255,255,255,.18);
+}
+.ring:nth-child(3){
+  inset:36px;
+  animation-duration:48s;
+  border-color:rgba(255,255,255,.1);
+}
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* Focus & high contrast preference */
+:focus-visible{
+  outline:3px solid var(--focus);
+  outline-offset:3px;
+  border-radius:12px;
+}
+@media (prefers-contrast: more){
+  :root{ --border:1.5px solid rgba(255,255,255,.6) }
+  .btn,.field{border-color:rgba(255,255,255,.6)}
+  .sub,.lead{color:#eaf2f5}
+}
+
+@media(min-width:720px){
+  h1{font-size:44px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .hero .wrap{padding:56px 20px 34px}
+}
+
+/* FAQ styles */
+.faq {
+  margin-top: 40px;
+}
+.faq h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  margin-bottom: 16px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.faq-item {
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  padding-bottom: 12px;
+}
+.faq-question {
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  position: relative;
+  padding-right: 24px;
+}
+.faq-question::after {
+  content: '\f078'; /* FontAwesome chevron down */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s ease;
+  color: var(--accent-2);
+}
+.faq-item.active .faq-question::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+.faq-answer {
+  margin-top: 8px;
+  color: var(--muted);
+  padding-left: 24px;
+  display: none;
+}
+.faq-item.active .faq-answer {
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav wrap">
+    <div class="brand"><span class="brand-mark">O</span>ORYVA</div>
+    <button class="nav-cta" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+      <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Rejoindre
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="rings" aria-hidden="true">
+    <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+  </div>
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span> MVP • Accès limité</span>
+    <h1>Des décisions plus lucides, pas des promesses.</h1>
+    <p class="sub">ORYVA, c’est l’union de la performance de la technologie et de l’expertise de nos experts financiers, gouvernée par la communauté pour une croissance durable.</p>
+
+    <div class="trustline" aria-label="Preuves de confiance">
+      <span class="pill"><i class="fa-solid fa-dollar-sign" aria-hidden="true"></i> Dès 5 $</span>
+      <span class="pill"><i class="fa-solid fa-clock" aria-hidden="true"></i> Retraits 24–48 h ouvrées</span>
+      <span class="pill"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Transparence des risques</span>
+    </div>
+
+    <div class="cta-row">
+      <a href="#waitlist" class="btn btn-primary"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Rejoindre la liste d’attente</a>
+      <a href="#why" class="btn" aria-label="En savoir plus sur ORYVA"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> En savoir plus</a>
+    </div>
+
+    <form id="waitlist" class="waitlist" onsubmit="subscribe(event)" novalidate>
+      <label for="email" class="visually-hidden">Votre email</label>
+      <input id="email" class="field" type="email" name="email" placeholder="Votre email" aria-describedby="status" autocomplete="email" required />
+      <button class="submit" type="submit" aria-label="S'inscrire à la liste d’attente">
+        <i class="fa-solid fa-bolt" aria-hidden="true"></i> Je m’inscris
+      </button>
+      <div style="flex-basis:100%"></div>
+      <label for="consent" style="font-size:12.5px;color:#cfe2e9;display:flex;gap:8px;align-items:flex-start">
+        <input type="checkbox" id="consent" required />
+        <span>J’accepte d’être contacté(e) pour l’ouverture du MVP.</span>
+      </label>
+      <div class="status" id="status" role="status" aria-live="polite"></div>
+      <div class="note">Note : ORYVA est actuellement en phase MVP. Pas de spam, désinscription possible à tout moment.</div>
+    </form>
+  </div>
+</section>
+
+<section id="why" class="section">
+  <div class="wrap">
+    <div class="kicker">Pourquoi ORYVA ?</div>
+    <h2 class="title"><i class="fa-solid fa-compass" aria-hidden="true"></i> Investir avec méthode, ouvert à tous</h2>
+    <p class="lead">ORYVA est la plateforme qui transforme l’épargne en investissement, adaptée à chaque profil. Nos experts financiers et nos technologies vous accompagnent vers une croissance durable.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3><i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i> L’accessibilité pour tous</h3>
+        <p>Démarrer est facile et accessible à partir de 5 $. Faites évoluer votre épargne en douceur.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> La sécurité avant tout</h3>
+        <p>Notre priorité absolue. Grâce à une gestion des risques assumée et à une architecture robuste, votre capital est entre de bonnes mains.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fa-solid fa-people-group" aria-hidden="true"></i> Une communauté qui évolue avec vous</h3>
+        <p>Chaque membre a son mot à dire sur les décisions clés. Nous construisons ensemble un service qui s’améliore en permanence.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fa-solid fa-robot" aria-hidden="true"></i> Une stratégie hybride et performante</h3>
+        <p>Nos bots travaillent en continu pour l’exécution des ordres, sous la supervision attentive de nos experts financiers et de nos traders expérimentés.</p>
+      </div>
+    </div>
+
+    <div class="dao">
+      <h4><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> DAO en bref</h4>
+      <p>
+        <i class="fa-solid fa-universal-access" aria-hidden="true"></i> Gouvernance ouverte: la communauté participe aux décisions structurantes.<br />
+        <i class="fa-solid fa-eye" aria-hidden="true"></i> Transparence: règles et priorités publiées et accessibles.<br />
+        <i class="fa-solid fa-road" aria-hidden="true"></i> Déploiement progressif: étapes mesurées pour sécurité et conformité.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="how-it-works" class="section">
+  <div class="wrap">
+    <div class="kicker">Comment ça marche ?</div>
+    <h2 class="title"><i class="fa-solid fa-route" aria-hidden="true"></i> L’investissement collaboratif, en toute simplicité</h2>
+    <p class="lead">Notre processus combine l’expertise et la puissance de l’IA pour une approche disciplinée. Voici les étapes :</p>
+    <div class="grid">
+      <div class="card">
+        <h3><i class="fa-solid fa-sliders" aria-hidden="true"></i> 1. Vous choisissez votre profil de risque</h3>
+        <p>Vous définissez votre niveau de risque (Prudent, Équilibré, Audacieux). Votre capital, même modeste, est mutualisé pour accéder à des stratégies communes.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fa-solid fa-briefcase" aria-hidden="true"></i> 2. Les experts conçoivent, les traders exécutent</h3>
+        <p>Les experts financiers conçoivent et optimisent les stratégies. Appuyés par l’IA, les traders exécutent des positions selon votre profil de risque.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fa-solid fa-chart-line" aria-hidden="true"></i> 3. Vous suivez en temps réel</h3>
+        <p>Depuis votre tableau de bord, vous visualisez l’évolution de votre capital. La communauté, via la DAO, contribue à l’amélioration continue de la plateforme.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section engagement">
+  <div class="wrap">
+    <div class="kicker">Notre Engagement</div>
+    <h2 class="title"><i class="fa-solid fa-handshake" aria-hidden="true"></i> Transparence, clarté, confiance.</h2>
+    <p class="lead">L’investissement comporte toujours des risques. Chez ORYVA, nous ne faisons pas de promesses, mais nous nous engageons à vous donner une vue claire et honnête sur les performances et les risques de vos placements. Zéro frais cachés. Une grille de frais simple sera publiée au lancement (MVP : « Frais de performance compétitifs »).</p>
+    <div class="risk">Tout investissement comporte un risque de perte en capital. Les mécanismes de protection éventuels n’éliminent pas le risque. Les performances passées ne préjugent pas des performances futures. Investissez selon votre tolérance au risque.</div>
+  </div>
+</section>
+
+<!-- FAQ insérée ici -->
+<section class="faq wrap" aria-label="Foire aux questions">
+  <h2><i class="fa-solid fa-question-circle"></i> Foire Aux Questions (FAQ) pour ORYVA</h2>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <i class="fa-solid fa-circle-question"></i> Pourquoi l'investissement démarre-t-il à seulement 5 $ sur ORYVA ?
+    </div>
+    <div class="faq-answer">
+      L'investissement à partir de 5 $ est au cœur de notre mission de démocratisation de l'investissement. En permettant d'investir des sommes modestes, nous rendons l'accès aux marchés financiers et à l'expertise de nos traders accessible à tous, quel que soit leur budget. Ce système permet également à nos utilisateurs de tester la plateforme et ses performances avant de s'engager avec des montants plus importants.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <i class="fa-solid fa-circle-question"></i> Comment la fiabilité et la sécurité de mon capital sont-elles assurées sur ORYVA ?
+    </div>
+    <div class="faq-answer">
+      La sécurité de votre capital est notre priorité absolue, assurée par une synergie unique entre l'humain et la technologie. Nos Experts financiers supervisent en continu les stratégies, tandis que nos bots assistants agissent comme un filet de sécurité algorithmique. Ces mécanismes intégrés sont conçus pour détecter et prévenir les risques de pertes non contrôlées, garantissant une exécution d'ordres disciplinée et optimisée, protégeant ainsi votre investissement.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <i class="fa-solid fa-circle-question"></i> Quels sont les risques associés à l'investissement sur ORYVA ?
+    </div>
+    <div class="faq-answer">
+      Tout investissement sur les marchés financiers comporte un risque de perte en capital. Les performances passées ne garantissent pas les résultats futurs. ORYVA s'engage à la transparence en affichant clairement les performances et les niveaux de risque de chaque stratégie. Nous recommandons d'investir uniquement les fonds que vous êtes prêt à perdre.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <i class="fa-solid fa-circle-question"></i> Quelle est la différence entre les "Traders" et les "Experts" sur la plateforme ?
+    </div>
+    <div class="faq-answer">
+      Nos "Experts" sont des professionnels de la finance qui conçoivent et optimisent les stratégies d'investissement. Les "Traders" sont ceux qui se chargent de l'exécution des ordres sur les marchés. ORYVA utilise une approche hybride où l'exécution peut être assistée par des technologies d'IA (bots) pour plus de rapidité et de précision.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <i class="fa-solid fa-circle-question"></i> Comment ORYVA assure-t-elle la transparence des performances ?
+    </div>
+    <div class="faq-answer">
+      Les performances de toutes les stratégies sont auditées par un système tiers indépendant et affichées en temps réel sur la plateforme. Cela inclut le taux de réussite des transactions, la volatilité et le drawdown (la perte maximale enregistrée), vous permettant de prendre des décisions éclairées.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <i class="fa-solid fa-circle-question"></i> Quelle est la structure des frais sur ORYVA ?
+    </div>
+    <div class="faq-answer">
+      ORYVA fonctionne sur un modèle de frais de performance compétitifs. Cela signifie que vous ne payez des frais que si vous réalisez des profits. Une grille de frais détaillée et simple sera publiée au lancement complet du MVP.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <i class="fa-solid fa-circle-question"></i> La plateforme est-elle conforme aux réglementations financières ?
+    </div>
+    <div class="faq-answer">
+      ORYVA s'engage à respecter les normes de sécurité et les réglementations en vigueur. Nous travaillons avec des partenaires de paiement de confiance et nous nous assurons que notre modèle de gestion de fonds est en conformité avec les régulateurs financiers.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <i class="fa-solid fa-circle-question"></i> Qu'est-ce qu'un DAO et comment la communauté peut-elle y participer ?
+    </div>
+    <div class="faq-answer">
+      Un DAO (Organisation Autonome Décentralisée) est une structure de gouvernance où la communauté participe aux décisions clés de la plateforme. Les membres d'ORYVA peuvent voter sur des propositions importantes, comme l'ajout de nouvelles fonctionnalités, l'évolution des stratégies ou la modification des frais. Cela garantit que la plateforme évolue dans l'intérêt de tous ses utilisateurs.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <i class="fa-solid fa-circle-question"></i> Comment puis-je retirer mes fonds et quels sont les délais ?
+    </div>
+    <div class="faq-answer">
+      Vous pouvez initier une demande de retrait à tout moment depuis votre tableau de bord ORYVA. Une fois la demande validée, les fonds correspondants sont retirés et vous sont envoyés. Le délai de traitement habituel est de 24 à 48 heures ouvrées pour que les fonds soient crédités sur votre compte bancaire.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <i class="fa-solid fa-circle-question"></i> Existe-t-il d'autres options de gestion de fonds disponibles ?
+    </div>
+    <div class="faq-answer">
+      Oui, pour les profils d'investisseurs plus avancés et pour des montants plus importants, des options de gestion de fonds individualisées, non incluses dans le regroupement, seront proposées. Ces options spécifiques feront l'objet d'une discussion et d'une validation avec nos équipes.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <i class="fa-solid fa-circle-question"></i> Puis-je investir dans différentes stratégies en même temps ?
+    </div>
+    <div class="faq-answer">
+      Oui, notre plateforme vous offre la possibilité de diversifier vos placements. Vous pouvez choisir d'allouer votre capital à plusieurs stratégies et experts financiers pour mieux gérer votre risque et optimiser votre potentiel de croissance.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <i class="fa-solid fa-circle-question"></i> Comment la communauté participe-t-elle concrètement au DAO ?
+    </div>
+    <div class="faq-answer">
+      La participation au DAO s'effectuera via un système de vote transparent sur la plateforme. Les membres pourront soumettre des propositions ou voter sur celles présentées par l'équipe. Les règles et le calendrier des votes seront clairement définis pour garantir une gouvernance équitable et démocratique.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div><i class="fa-solid fa-envelope" aria-hidden="true"></i> ORYVA Inc. • <a href="mailto:contact@oryva.com">contact@oryva.com</a></div>
+    <div class="small">Partenaires de paiement de confiance pour plus de flexibilité • Mentions légales à venir</div>
+    <div class="small">Investir comporte des risques, dont un risque de perte en capital. Aucune performance n’est garantie.</div>
+  </div>
+</footer>
+
+<script>
+function subscribe(e){
+  e.preventDefault();
+  const emailEl = document.getElementById('email');
+  const consent = document.getElementById('consent');
+  const status = document.getElementById('status');
+  const email = emailEl.value.trim();
+
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    status.textContent = 'Veuillez saisir un email valide.';
+    status.style.color = '#ffb3b3';
+    emailEl.focus();
+    return;
+  }
+  if(!consent.checked){
+    status.textContent = 'Veuillez accepter d’être contacté(e) pour l’ouverture du MVP.';
+    status.style.color = '#ffb3b3';
+    return;
+  }
+  status.textContent = 'C’est noté — vous serez prévenu(e) à l’ouverture du MVP.';
+  status.style.color = 'var(--success)';
+  e.target.reset();
+}
+
+// FAQ accordéon
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    item.classList.toggle('active');
+  });
+});
+</script>
+
+</body>
+</html>
